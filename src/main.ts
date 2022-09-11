@@ -9,8 +9,8 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   const config = new DocumentBuilder()
-    .setTitle('Api cloudwalk')
-    .setDescription('Aplição da cloudwalk')
+    .setTitle('Api CloudWalk')
+    .setDescription('Aplicação da CloudWalk')
     .setVersion('1.0.0')
     .addTag('products')
     .build();

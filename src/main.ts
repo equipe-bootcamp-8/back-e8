@@ -9,14 +9,14 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   const config = new DocumentBuilder()
-    .setTitle('Api CloudWalk')
+    .setTitle('API CloudWalk')
     .setDescription('Aplicação da CloudWalk')
     .setVersion('1.0.0')
     .addTag('products')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('docs', app, document);
   await app.listen(3000);
 }
 bootstrap();

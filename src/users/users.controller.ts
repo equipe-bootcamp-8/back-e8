@@ -22,7 +22,7 @@ export class UsersController {
   @ApiOperation({
     summary: 'Create user',
   })
-  create(@Body() dto: CreateUserDto): User {
+  create(@Body() dto: CreateUserDto): Promise<User | void> {
     return this.usersService.create(dto);
   }
 
@@ -30,7 +30,7 @@ export class UsersController {
   @ApiOperation({
     summary: 'List users',
   })
-  findAll() {
+  findAll(): Promise<User[]> {
     return this.usersService.findAll();
   }
 
@@ -38,7 +38,7 @@ export class UsersController {
   @ApiOperation({
     summary: 'List user by id',
   })
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: string): Promise<User | void> {
     return this.usersService.findOne(id);
   }
 
@@ -46,7 +46,10 @@ export class UsersController {
   @ApiOperation({
     summary: 'Update user',
   })
-  update(@Param('id') id: string, @Body() dto: UpdateUserDto) {
+  update(
+    @Param('id') id: string,
+    @Body() dto: UpdateUserDto,
+  ): Promise<User | void> {
     return this.usersService.update(id, dto);
   }
 

@@ -34,6 +34,9 @@ export class UsersService {
   }
 
   remove(id: string) {
-    return this.prisma.user.remove(id);
+    return this.prisma.user.delete({
+      where: { id },
+      select: { name: true, email: true },
+    });
   }
 }

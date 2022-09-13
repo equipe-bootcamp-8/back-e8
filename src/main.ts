@@ -13,6 +13,7 @@ async function bootstrap() {
     .setDescription('Aplicação da CloudWalk')
     .setVersion('1.0.0')
     .addTag('products')
+    .addTag('users')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

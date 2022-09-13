@@ -12,7 +12,9 @@ async function bootstrap() {
     .setTitle('API CloudWalk')
     .setDescription('Aplicação da CloudWalk')
     .setVersion('1.0.0')
+    .addTag('status')
     .addTag('products')
+    .addTag('users')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

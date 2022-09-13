@@ -8,23 +8,23 @@ import { User } from './entities/user.entity';
 export class UsersService {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(dto: CreateUserDto): User {
+  create(dto: CreateUserDto): Promise<User | void> {
     return;
   }
 
-  findAll() {
+  findAll(): Promise<User[]> {
     return this.prisma.user.findMany();
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} user`;
+  findOne(id: string): Promise<User> {
+    return this.prisma.user.findOne({ where: { id } });
   }
 
-  update(id: string, dto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  update(id: string, dto: UpdateUserDto): Promise<User | void> {
+    return this.prisma.user.update(id, dto);
   }
 
   remove(id: string) {
-    return `This action removes a #${id} user`;
+    return this.prisma.user.remove(id);
   }
 }

@@ -26,7 +26,7 @@ export class UsersService {
   }
 
   findOne(id: string): Promise<User> {
-    return this.prisma.user.findOne({ where: { id } });
+    return this.prisma.user.findUnique({ where: { id } });
   }
 
   update(id: string, dto: UpdateUserDto): Promise<User | void> {

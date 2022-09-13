@@ -30,7 +30,7 @@ export class UsersService {
   }
 
   update(id: string, dto: UpdateUserDto): Promise<User | void> {
-    return this.prisma.user.update(id, dto);
+    return this.prisma.user.update({ where: { id }, data: dto });
   }
 
   remove(id: string) {

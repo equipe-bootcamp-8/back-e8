@@ -10,15 +10,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Product{
-  id String @id @default(uuid())
-  code Int
-  name String
+model Product {
+  id          String   @id @default(uuid())
+  code        Int      @unique
+  name        String
   description String
-  price Float
-  available Boolean
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  price       Float
+  available   Boolean
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
 
   category Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   categoryId String? @map("category_id")
@@ -26,13 +26,24 @@ model Product{
   @@map("products")
 }
 
-model Category{
-  id String @id @default(uuid())
-  name String @unique
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+model Category {
+  id         String   @id @default(uuid())
+  name       String   @unique
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
 
   products Product[]
 
   @@map("categories")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("user")
 }

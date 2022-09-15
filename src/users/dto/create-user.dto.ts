@@ -25,7 +25,7 @@ export class CreateUserDto {
   email: string;
 
   @IsAlphanumeric()
-  @MinLength(4)
+  @MinLength(8)
   @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
     message: 'Weak password',
   })

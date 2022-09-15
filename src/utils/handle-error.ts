@@ -1,11 +1,11 @@
 import { UnprocessableEntityException } from '@nestjs/common';
 
 export const handleErrorConstraintUnique = (error: Error): never => {
-  const splitedMessage = error.message.split('`');
+  const splittedMessage: string[] = error.message.split('`');
 
-  const errorMessage = `Entrada '${
-    splitedMessage[splitedMessage.length - 2]
-  }' não está respeitando a constraint UNIQUE`;
+  const errorMessage = `O campo '${splittedMessage.at(
+    -2,
+  )}' não está respeitando a CONSTRAINT UNIQUE`;
 
   throw new UnprocessableEntityException(errorMessage);
 };

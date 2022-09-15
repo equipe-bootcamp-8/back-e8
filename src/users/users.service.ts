@@ -10,8 +10,19 @@ import { handleErrorConstraintUnique } from 'src/utils/handle-error';
 export class UsersService {
   constructor(private readonly prisma: PrismaService) {}
 
+  private userSelect = {
+    id: true,
+    name: true,
+    email: true,
+    createdAt: true,
+    updatedAt: true,
+  };
+
   async checkIdAndReturnUser(id: string): Promise<User> {
-    const user: User = await this.prisma.user.findUnique({ where: { id } });
+    const user: User = await this.prisma.user.findUnique({
+      where: { id },
+      select: this.userSelect,
+    });
 
     if (!user) {
       throw new NotFoundException(`O ID ${id} não é válido!`);
@@ -28,11 +39,13 @@ export class UsersService {
       password: hashedPassword,
     };
 
-    return this.prisma.user.create({ data }).catch(handleErrorConstraintUnique);
+    return this.prisma.user
+      .create({ data, select: this.userSelect })
+      .catch(handleErrorConstraintUnique);
   }
 
   findAll(): Promise<User[]> {
-    return this.prisma.user.findMany();
+    return this.prisma.user.findMany({ select: this.userSelect });
   }
 
   findOne(id: string): Promise<User> {

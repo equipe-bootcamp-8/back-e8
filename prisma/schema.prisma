@@ -15,6 +15,7 @@ model Product {
   code        Int      @unique
   name        String
   description String
+  image       String
   price       Float
   available   Boolean
   createdAt   DateTime @default(now()) @map("created_at")

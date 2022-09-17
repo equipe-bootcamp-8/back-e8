@@ -4,6 +4,7 @@ import {
   IsNotEmpty,
   IsNumber,
   IsString,
+  IsUrl,
   IsUUID,
 } from 'class-validator';
 
@@ -13,7 +14,7 @@ export class CreateProductDto {
   })
   @IsNotEmpty()
   @ApiProperty({
-    description: 'Numero do codigo do produto',
+    description: 'Product Code Number',
     example: 2883746657329,
   })
   code: number;
@@ -21,7 +22,7 @@ export class CreateProductDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'Nome do produto',
+    description: 'Product"s name',
     example: 'Tenis nike',
   })
   name: string;
@@ -29,7 +30,7 @@ export class CreateProductDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'Descrição do produto',
+    description: 'Product Description',
     example: 'Tenis com tamanho 40',
   })
   description: string;
@@ -38,25 +39,33 @@ export class CreateProductDto {
   @IsUUID()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'Categoria do produto',
+    description: 'Product Category',
     example: 'Calçados',
   })
   categoryId: string;
+
+  @IsUrl()
+  @ApiProperty({
+    description: 'Product Image',
+    example:
+      'https://media.istockphoto.com/photos/beautiful-background-from-texture-closeup-decorative-venetian-stucco-picture-id1189093751',
+  })
+  image: string;
 
   @IsNumber({
     maxDecimalPlaces: 2,
   })
   @IsNotEmpty()
   @ApiProperty({
-    description: 'Preço do produto',
-    example: `R$ ${20.0}`,
+    description: 'Product Price',
+    example: 19.99,
   })
   price: number;
 
   @IsBoolean()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'Disponibilidade do produto',
+    description: 'Product Availability',
     example: true,
   })
   available: boolean;

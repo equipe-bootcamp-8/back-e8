@@ -4,6 +4,7 @@ import {
   IsEmail,
   IsNotEmpty,
   IsString,
+  IsUrl,
   Matches,
   MinLength,
 } from 'class-validator';
@@ -34,4 +35,11 @@ export class CreateUserDto {
     example: 'Abc1234@',
   })
   password: string;
+
+  @IsUrl()
+  @ApiProperty({
+    description: 'Image user',
+    example: 'http://image.png',
+  })
+  image: string;
 }

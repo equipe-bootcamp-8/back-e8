@@ -9,6 +9,8 @@ async function bootstrap() {
     cors: true,
   });
 
+  app.set('trust proxy', 1);
+
   app.useGlobalPipes(new ValidationPipe());
 
   const config = new DocumentBuilder()

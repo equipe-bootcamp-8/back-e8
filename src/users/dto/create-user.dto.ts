@@ -41,5 +41,5 @@ export class CreateUserDto {
     description: 'Image user',
     example: 'http://image.png',
   })
-  image: string;
+  image?: string;
 }

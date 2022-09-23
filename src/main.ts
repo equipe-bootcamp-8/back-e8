@@ -15,7 +15,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('API CloudWalk')
-    .setDescription('Aplicação da CloudWalk')
+    .setDescription('CloudWalk e-commerce manager application')
     .setVersion('1.0.0')
     .addTag('status')
     .addTag('auth')

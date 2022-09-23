@@ -24,7 +24,10 @@ model Product {
   category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   categoryId String?   @map("category_id")
 
+  update Update[]
+
   @@map("products")
+  @@unique([id, price])
 }
 
 model Category {
@@ -48,4 +51,17 @@ model User {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("user")
+}
+
+model Update {
+  id        String   @id @default(uuid())
+  discount  Int
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  product      Product @relation(fields: [productId, productPrice], references: [id, price])
+  productId    String
+  productPrice Float
+
+  @@map("update")
 }

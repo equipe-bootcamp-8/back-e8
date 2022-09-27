@@ -1,10 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
-  IsAlphanumeric,
   IsEmail,
   IsNotEmpty,
   IsString,
-  IsUrl,
   Matches,
   MinLength,
 } from 'class-validator';
@@ -25,7 +23,6 @@ export class CreateUserDto {
   })
   email: string;
 
-  @IsAlphanumeric()
   @MinLength(8)
   @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
     message: 'Weak password',
@@ -35,11 +32,4 @@ export class CreateUserDto {
     example: 'Abc1234@',
   })
   password: string;
-
-  @IsUrl()
-  @ApiProperty({
-    description: 'Image user',
-    example: 'http://image.png',
-  })
-  image?: string;
 }

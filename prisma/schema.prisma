@@ -26,8 +26,8 @@ model Product {
 
   update Update[]
 
-  @@map("products")
   @@unique([id, price])
+  @@map("products")
 }
 
 model Category {
@@ -46,7 +46,7 @@ model User {
   name      String
   email     String   @unique
   password  String
-  image     String
+  image     String   @default("https://cdn-icons-png.flaticon.com/512/17/17004.png")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 

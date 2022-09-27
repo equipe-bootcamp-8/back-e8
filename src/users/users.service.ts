@@ -25,7 +25,7 @@ export class UsersService {
     });
 
     if (!user) {
-      throw new NotFoundException(`O ID ${id} não é válido!`);
+      throw new NotFoundException(`The ID '${id}' is not valid!`);
     }
     return user;
   }

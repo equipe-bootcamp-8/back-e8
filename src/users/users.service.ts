@@ -25,7 +25,7 @@ export class UsersService {
     });
 
     if (!user) {
-      throw new NotFoundException(`O ID ${id} não é válido!`);
+      throw new NotFoundException(`The ID '${id}' is not valid!`);
     }
     return user;
   }
@@ -37,7 +37,6 @@ export class UsersService {
       name: dto.name,
       email: dto.email,
       password: hashedPassword,
-      image: dto.image,
     };
 
     return this.prisma.user

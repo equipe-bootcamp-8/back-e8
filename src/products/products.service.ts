@@ -23,12 +23,10 @@ export class ProductsService {
     const products: Product[] = await this.prisma.product
       .findMany({ where: query })
       .catch(() => {
-        throw new UnprocessableEntityException('Formato de query invalido');
+        throw new UnprocessableEntityException('Invalid format!');
       });
     if (products.length === 0) {
-      throw new NotFoundException(
-        'Nenhuma entrada encontrada de query aplication',
-      );
+      throw new NotFoundException('No entries found in query app!');
     }
 
     return products;
@@ -40,7 +38,7 @@ export class ProductsService {
     });
 
     if (!product) {
-      throw new NotFoundException(`Entrada de id ${id} nao encontrada`);
+      throw new NotFoundException(`The ID '${id}' is not valid!`);
     }
     return product;
   }

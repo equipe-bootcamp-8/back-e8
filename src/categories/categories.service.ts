@@ -25,7 +25,7 @@ export class CategoriesService {
     });
 
     if (!category) {
-      throw new NotFoundException(`Entrada de id '${id}' não encontrada`);
+      throw new NotFoundException(`The ID '${id}' is not valid!`);
     }
 
     return category;

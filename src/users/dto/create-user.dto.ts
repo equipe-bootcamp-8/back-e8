@@ -18,10 +18,10 @@ export class CreateUserDto {
   email: string;
 
   @Matches(
-    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/,
+    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#.])[0-9a-zA-Z$*&@#.]{8,}$/,
     {
       message:
-        'Weak password! \n It must contain at least 8 characters, \n being an uppercase letter, \n a lowercase letter, \n a number and one of the special characters: $*&@#',
+        'Weak password! \n It must contain at least 8 characters, \n being an uppercase letter, \n a lowercase letter, \n a number and one of the special characters: $*&@#.',
     },
   )
   @ApiProperty({

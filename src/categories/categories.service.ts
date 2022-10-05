@@ -9,16 +9,6 @@ import { Category } from './entities/category.entity';
 export class CategoriesService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(dto: CreateCategoryDto): Promise<Category> {
-    return this.prisma.category
-      .create({ data: dto })
-      .catch(handleErrorConstraintUnique);
-  }
-
-  findAll(): Promise<Category[]> {
-    return this.prisma.category.findMany();
-  }
-
   async verifyIdAndReturnCategory(id: string): Promise<Category> {
     const category: Category = await this.prisma.category.findUnique({
       where: { id },
@@ -29,6 +19,16 @@ export class CategoriesService {
     }
 
     return category;
+  }
+
+  async create(dto: CreateCategoryDto): Promise<Category> {
+    return this.prisma.category
+      .create({ data: dto })
+      .catch(handleErrorConstraintUnique);
+  }
+
+  findAll(): Promise<Category[]> {
+    return this.prisma.category.findMany();
   }
 
   findOne(id: string): Promise<Category> {

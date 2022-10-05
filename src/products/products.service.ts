@@ -13,6 +13,17 @@ import { Product } from './entities/product.entity';
 export class ProductsService {
   constructor(private readonly prisma: PrismaService) {}
 
+  async verifyIdAndReturnProduct(id: string): Promise<Product> {
+    const product: Product = await this.prisma.product.findUnique({
+      where: { id },
+    });
+
+    if (!product) {
+      throw new NotFoundException(`The ID '${id}' is not valid!`);
+    }
+    return product;
+  }
+
   async create(dto: CreateProductDto): Promise<Product | void> {
     return this.prisma.product
       .create({ data: dto })
@@ -30,17 +41,6 @@ export class ProductsService {
     }
 
     return products;
-  }
-
-  async verifyIdAndReturnProduct(id: string): Promise<Product> {
-    const product: Product = await this.prisma.product.findUnique({
-      where: { id },
-    });
-
-    if (!product) {
-      throw new NotFoundException(`The ID '${id}' is not valid!`);
-    }
-    return product;
   }
 
   findOne(id: string): Promise<Product> {

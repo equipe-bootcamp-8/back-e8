@@ -9,6 +9,18 @@ import { Category } from './entities/category.entity';
 export class CategoriesService {
   constructor(private readonly prisma: PrismaService) {}
 
+  async verifyIdAndReturnCategory(id: string): Promise<Category> {
+    const category: Category = await this.prisma.category.findUnique({
+      where: { id },
+    });
+
+    if (!category) {
+      throw new NotFoundException(`The ID '${id}' is not valid!`);
+    }
+
+    return category;
+  }
+
   async create(dto: CreateCategoryDto): Promise<Category> {
     return this.prisma.category
       .create({ data: dto })
@@ -17,18 +29,6 @@ export class CategoriesService {
 
   findAll(): Promise<Category[]> {
     return this.prisma.category.findMany();
-  }
-
-  async verifyIdAndReturnCategory(id: string): Promise<Category> {
-    const category: Category = await this.prisma.category.findUnique({
-      where: { id },
-    });
-
-    if (!category) {
-      throw new NotFoundException(`Entrada de id '${id}' não encontrada`);
-    }
-
-    return category;
   }
 
   findOne(id: string): Promise<Category> {

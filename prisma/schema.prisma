@@ -15,22 +15,26 @@ model Product {
   code        Int      @unique
   name        String
   description String
+  image       String
   price       Float
   available   Boolean
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
 
-  category Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
-  categoryId String? @map("category_id")
+  category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  categoryId String?   @map("category_id")
 
+  update Update[]
+
+  @@unique([id, price])
   @@map("products")
 }
 
 model Category {
-  id         String   @id @default(uuid())
-  name       String   @unique
-  createdAt  DateTime @default(now()) @map("created_at")
-  updatedAt  DateTime @updatedAt @map("updated_at")
+  id        String   @id @default(uuid())
+  name      String   @unique
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   products Product[]
 
@@ -42,8 +46,22 @@ model User {
   name      String
   email     String   @unique
   password  String
+  image     String   @default("https://cdn-icons-png.flaticon.com/512/17/17004.png")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("user")
+}
+
+model Update {
+  id        String   @id @default(uuid())
+  discount  Int
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  product      Product @relation(fields: [productId, productPrice], references: [id, price])
+  productId    String
+  productPrice Float
+
+  @@map("update")
 }

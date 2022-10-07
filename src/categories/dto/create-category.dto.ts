@@ -5,7 +5,7 @@ export class CreateCategoryDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'Nome da categoria',
+    description: 'Category name',
     example: 'Nft',
   })
   name: string;

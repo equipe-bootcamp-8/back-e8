@@ -3,7 +3,7 @@ export class Product {
   code: number;
   name: string;
   description: string;
-  categoryId: string;
+  categoryName: string;
   image: string;
   price: number;
   available: boolean;

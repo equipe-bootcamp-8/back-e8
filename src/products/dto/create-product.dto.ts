@@ -36,13 +36,12 @@ export class CreateProductDto {
   description: string;
 
   @IsString()
-  @IsUUID()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'Product Category',
+    description: 'Product Category name',
     example: 'Calçados',
   })
-  categoryId: string;
+  categoryName: string;
 
   @IsUrl()
   @ApiProperty({

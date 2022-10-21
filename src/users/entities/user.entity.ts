@@ -4,6 +4,7 @@ export class User {
   email: string;
   password?: string;
   image?: string;
+  isAdmin: boolean;
   createdAt: Date;
   updatedAt: Date;
 }

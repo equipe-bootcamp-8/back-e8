@@ -46,6 +46,7 @@ model User {
   name      String
   email     String   @unique
   password  String
+  isAdmin Boolean @default(true)
   image     String   @default("https://cdn-icons-png.flaticon.com/512/17/17004.png")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")

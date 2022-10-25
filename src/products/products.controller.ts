@@ -17,13 +17,13 @@ import { Product } from './entities/product.entity';
 import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('products')
-@UseGuards(AuthGuard())
-@ApiBearerAuth()
 @Controller('products')
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @Post()
+  @UseGuards(AuthGuard())
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Create product' })
   create(@Body() dto: CreateProductDto): Promise<Product | void> {
     return this.productsService.create(dto);
@@ -42,6 +42,8 @@ export class ProductsController {
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard())
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Update product' })
   update(
     @Param('id') id: string,
@@ -51,6 +53,8 @@ export class ProductsController {
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard())
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Delete product' })
   remove(@Param('id') id: string) {
     return this.productsService.remove(id);

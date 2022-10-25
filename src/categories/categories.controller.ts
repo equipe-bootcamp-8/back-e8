@@ -16,14 +16,14 @@ import { UpdateCategoryDto } from './dto/update-category.dto';
 import { Category } from './entities/category.entity';
 
 @ApiTags('categories')
-@UseGuards(AuthGuard())
-@ApiBearerAuth()
 @Controller('categories')
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
   @ApiOperation({ summary: 'Create category' })
   @Post()
+  @UseGuards(AuthGuard())
+  @ApiBearerAuth()
   create(@Body() dto: CreateCategoryDto): Promise<Category> {
     return this.categoriesService.create(dto);
   }
@@ -42,6 +42,8 @@ export class CategoriesController {
 
   @ApiOperation({ summary: 'Update category' })
   @Patch(':id')
+  @UseGuards(AuthGuard())
+  @ApiBearerAuth()
   update(
     @Param('id') id: string,
     @Body() dto: UpdateCategoryDto,
@@ -51,6 +53,8 @@ export class CategoriesController {
 
   @ApiOperation({ summary: 'Delete category' })
   @Delete(':id')
+  @UseGuards(AuthGuard())
+  @ApiBearerAuth()
   remove(@Param('id') id: string) {
     return this.categoriesService.remove(id);
   }

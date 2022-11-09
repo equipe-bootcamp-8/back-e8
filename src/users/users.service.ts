@@ -15,6 +15,7 @@ export class UsersService {
     name: true,
     email: true,
     isAdmin: true,
+    active: true,
     createdAt: true,
     updatedAt: true,
   };

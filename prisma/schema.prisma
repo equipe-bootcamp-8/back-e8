@@ -21,7 +21,7 @@ model Product {
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
 
-  category   Category? @relation(fields: [categoryName], references: [name], onDelete: SetNull)
+  category     Category? @relation(fields: [categoryName], references: [name], onDelete: SetNull)
   categoryName String?   @map("category_name")
 
   update Update[]
@@ -46,8 +46,9 @@ model User {
   name      String
   email     String   @unique
   password  String
-  isAdmin Boolean @default(true)
   image     String   @default("https://cdn-icons-png.flaticon.com/512/17/17004.png")
+  isAdmin   Boolean  @default(true)
+  active    Boolean  @default(false)
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 

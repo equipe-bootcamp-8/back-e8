@@ -5,6 +5,7 @@ export class User {
   password?: string;
   image?: string;
   isAdmin: boolean;
+  active: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
